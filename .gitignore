@@ -1,0 +1,39 @@
+desktop.ini
+Thumbs.db
+*.tmp
+~$*
+.env
+*.key
+credentials.*
+
+# 交接檔含真實電腦名與本機路徑，只走雲端硬碟同步
+handoff.md
+
+# Python／Blender 暫存與備份
+__pycache__/
+*.py[cod]
+*.blend[0-9]*
+*.blend@
+*.bphys
+blender.log
+
+# 大型輸出與快取只留在 GDrive
+output/
+**/renders/
+**/exports/
+**/cache/
+
+# 產出的照片、影片與音樂（預覽、抽幀、成片、配樂）只走雲端硬碟同步，不進 git
+# 參考素材的 .webp 不在此列
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.mov
+*.webm
+*.mp3
+*.wav
+*.flac
+*.m4a
+*.aac
