@@ -10,7 +10,7 @@
 ## 關鍵時程
 
 - 2026-09-21：建立 `media-3d-studio`，完成專案初始化與本機 Git 基線。
-- 2026-10-25：從 `media-comfyui-studio` 搬入仿蘋果發表廣告〈Banana 18 Pro〉（2026-09-29 完成的 60 秒 v3，`output/banana-18-pro/`）。
+- 2026-10-25：從 `media-music-video`（原 `media-comfyui-studio`）搬入仿蘋果發表廣告〈Banana 18 Pro〉（2026-09-29 完成的 60 秒 v3，`output/banana-18-pro/`）。
 
 ## 目標與路線圖
 
@@ -50,7 +50,7 @@ media-3d-studio/
 - 版本定稿後，checkpoint、`.blend1`、`render-cache/` 逐格快取與驗收抽幀屬中間產物，經使用者同意可丟資源回收筒；沒被 `gallery.html`、`index.html`、`report.md` 或 `發布資訊.md` 引用的驗收圖也算中間產物。仍在開發中的最新版快取，以及上述檔案引用的圖片要保留。
 - 舊版本不保留交付用 GLB／FBX／OBJ，只有各作品最新版保留。移除前先確認保留的 `.blend` 能重新匯出每一種姿態，不能時照實寫明；移除後拿掉 `gallery.html`／`index.html` 的對應連結，並在該版 `report.md` 文末註明移除日期與重新匯出方式。
 - 每個版本的腳本、log 與檢查用 json 放在它產出的版本資料夾，不集中堆在第一版。跨版本讀取輸入或共用腳本時，以 `Path(__file__).resolve().parent.parent/'<版本資料夾>'/…` 指向來源版本，不用同資料夾路徑。
-- 〈Banana 18 Pro〉是從 `media-comfyui-studio` 搬來的整支廣告片（bpy 建模算圖＋Python 合成＋numpy 配樂），維持原結構 `output/banana-18-pro/{common,blender,audio,comp,tools,media}/`，不拆成版本資料夾；重現步驟與定稿清單以它的 `notes.md` 為準。
+- 〈Banana 18 Pro〉是從 `media-music-video`（原 `media-comfyui-studio`）搬來的整支廣告片（bpy 建模算圖＋Python 合成＋numpy 配樂），維持原結構 `output/banana-18-pro/{common,blender,audio,comp,tools,media}/`，不拆成版本資料夾；重現步驟與定稿清單以它的 `notes.md` 為準。
 - 修改既有 `.blend` 時預設另存新檔，不覆蓋使用者原始檔；只有使用者明確要求才可原地覆蓋。
 - 重跑既有作品的重建腳本前，先確認輸入與覆寫範圍；保留手動修訂的主檔時，不得直接重建覆蓋。
 - 場景修改後重渲染時，先移走與來源雜湊不符的舊格圖快取，避免混入舊畫面。
