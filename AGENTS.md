@@ -26,7 +26,7 @@ media-3d-studio/
 ├── AGENTS.md            本檔（專案藍圖）
 ├── handoff.md           交接檔（不進 git，只走 GDrive）
 ├── CLAUDE.md            Claude Code 橋接檔（@AGENTS.md）
-├── templates/          共用文件範本（發布資訊範本.md：YouTube／Facebook／Instagram／Threads；五個媒體專案各一份、內容逐位元組相同，正本在 media-youtube-publish 的 `skills/youtube-video-workflow/references/`，改正本再整份覆蓋，不在本專案就地改）
+├── templates/          共用文件範本（發布資訊範本.md：YouTube／Facebook／Instagram／Threads；五個媒體專案各一份、內容逐位元組相同，正本在 media-youtube-publish 的 `skills/youtube-long/references/`，改正本再整份覆蓋，不在本專案就地改）
 ├── assets/              共用輸入素材：參考圖、貼圖、HDRI、外部模型
 └── output/              所有作品與產出集中於此（整個不進 git，只走 GDrive）
     ├── banana-18-pro/   仿蘋果發表廣告〈Banana 18 Pro〉60 秒（整支片，結構例外，見〈專案專屬規則〉）
