@@ -11,6 +11,7 @@
 
 - 2026-09-21：建立 `media-3d-studio`，完成專案初始化與本機 Git 基線。
 - 2026-10-25：從 `media-music-video`（原 `media-comfyui-studio`）搬入仿蘋果發表廣告〈Banana 18 Pro〉（2026-09-29 完成的 60 秒 v3，`output/banana-18-pro/`）。
+- 2026-10-25：作品結構改為「最新版在作品根目錄、舊版收進 `versions/`」（機械錶 v9、Optimus 03 detailed 在根目錄）。
 
 ## 目標與路線圖
 
@@ -30,26 +31,27 @@ media-3d-studio/
 └── output/              所有作品與產出集中於此（整個不進 git，只走 GDrive）
     ├── banana-18-pro/   仿蘋果發表廣告〈Banana 18 Pro〉60 秒（整支片，結構例外，見〈專案專屬規則〉）
     └── <作品>/          一件作品一個資料夾
-        ├── 發布資訊.md   該作品唯一的社群發布文案
-        └── <版本>/       每個版本一個子資料夾
-            ├── scene.blend  可繼續編輯的 Blender 原始檔
-            ├── build_scene.py  可重現主要建模步驟的 bpy 腳本
-            ├── <名稱>-<版本>.glb  交付模型（GLB／FBX／OBJ；只有最新版保留）
-            ├── previews/    各視角驗收預覽
-            ├── checkpoints/ 重要修改前的可回復版本
-            ├── render-cache/ 逐格快取（frames/＋source.json）
-            └── report.md    交付內容、限制與重跑方式
+        ├── 發布資訊.md   該作品唯一的社群發布文案（作品層文件，不隨版本搬動）
+        ├── scene.blend  最新版：可繼續編輯的 Blender 原始檔
+        ├── build_scene.py  可重現主要建模步驟的 bpy 腳本
+        ├── <名稱>-<版本>.glb  交付模型（GLB／FBX／OBJ；只有根目錄的最新版保留）
+        ├── previews/    各視角驗收預覽
+        ├── checkpoints/ 重要修改前的可回復版本
+        ├── render-cache/ 逐格快取（frames/＋source.json）
+        ├── report.md    交付內容、限制與重跑方式（寫明是哪一版）
+        └── versions/    舊版本，每版一個資料夾，沿用原資料夾名（如 01-astra-calibre-01-v1/）
 ```
 
 ## 專案專屬規則
 
 - Blender 工作一律載入 `blender` 技能；通用操作知識不在本專案複製一份。
-- 每件作品使用 `output/<作品>/<版本>/`，每個版本至少保留 `.blend`、可重現的 `bpy` 腳本、預覽與 `report.md`；該版的 GLB、影片與逐格快取也放在同一個版本資料夾，不另開 `exports/`、`renders/` 之類的集中資料夾。
+- 每件作品的最新版直接放在 `output/<作品>/` 根目錄，舊版放 `output/<作品>/versions/<版本資料夾>/`。每個版本至少保留 `.blend`、可重現的 `bpy` 腳本、預覽與 `report.md`；該版的 GLB、影片與逐格快取跟著該版放，不另開 `exports/`、`renders/` 之類的集中資料夾。
+- 做新版前，先把根目錄的最新版內容整份搬進 `versions/<該版資料夾名>/`（`發布資訊.md`、`版本主檔.md` 等作品層文件留在根目錄），新版腳本從那裡讀輸入、結果寫回根目錄；搬完同步更新作品層文件與根目錄頁面裡的版本路徑。
 - 每個作品只有一份 `output/<作品>/發布資訊.md`（比照 media-short-film），依 `templates/發布資訊範本.md` 撰寫；文案以選定的發布版本為準，其他版本列在〈版本一覽〉，不在版本資料夾各寫一份，也不另建索引。核對實際製作方式、工具、素材來源與展示限制，文案和交付媒體須對應同一版本。
-- 機械錶每個版本的資料夾內，包含影片與子資料夾在內只保留一個主要 `.blend`；將模型與要保留的動畫整合於主檔，不另留錶帶開合、攝影、剪輯或 `.blend1` 副本。影片、腳本與預覽放在對應機械錶版本資料夾內。
+- 機械錶每個版本的資料夾內，包含影片與子資料夾在內只保留一個主要 `.blend`；將模型與要保留的動畫整合於主檔，不另留錶帶開合、攝影、剪輯或 `.blend1` 副本。影片、腳本與預覽跟著所屬版本放。
 - 版本定稿後，checkpoint、`.blend1`、`render-cache/` 逐格快取與驗收抽幀屬中間產物，經使用者同意可丟資源回收筒；沒被 `gallery.html`、`index.html`、`report.md` 或 `發布資訊.md` 引用的驗收圖也算中間產物。仍在開發中的最新版快取，以及上述檔案引用的圖片要保留。
-- 舊版本不保留交付用 GLB／FBX／OBJ，只有各作品最新版保留。移除前先確認保留的 `.blend` 能重新匯出每一種姿態，不能時照實寫明；移除後拿掉 `gallery.html`／`index.html` 的對應連結，並在該版 `report.md` 文末註明移除日期與重新匯出方式。
-- 每個版本的腳本、log 與檢查用 json 放在它產出的版本資料夾，不集中堆在第一版。跨版本讀取輸入或共用腳本時，以 `Path(__file__).resolve().parent.parent/'<版本資料夾>'/…` 指向來源版本，不用同資料夾路徑。
+- 舊版本不保留交付用 GLB／FBX／OBJ，只有作品根目錄的最新版保留。移除前先確認保留的 `.blend` 能重新匯出每一種姿態，不能時照實寫明；移除後拿掉 `gallery.html`／`index.html` 的對應連結，並在該版 `report.md` 文末註明移除日期與重新匯出方式。
+- 每個版本的腳本、log 與檢查用 json 跟著它產出的版本放，不集中堆在第一版。跨版本讀取輸入或共用腳本時，以作品根（往上找到 `發布資訊.md` 的資料夾）為基準：`WORK=next(p for p in (R,*R.parents) if (p/'發布資訊.md').is_file())`，再用 `WORK/'versions/<版本資料夾>/…'` 指向舊版，版本封存後不必再改；`versions/` 內舊腳本的 `parent.parent/'<版本資料夾>'` 寫法仍有效，不必改。
 - 〈Banana 18 Pro〉是從 `media-music-video`（原 `media-comfyui-studio`）搬來的整支廣告片（bpy 建模算圖＋Python 合成＋numpy 配樂），維持原結構 `output/banana-18-pro/{common,blender,audio,comp,tools,media}/`，不拆成版本資料夾；重現步驟與定稿清單以它的 `notes.md` 為準。
 - 修改既有 `.blend` 時預設另存新檔，不覆蓋使用者原始檔；只有使用者明確要求才可原地覆蓋。
 - 重跑既有作品的重建腳本前，先確認輸入與覆寫範圍；保留手動修訂的主檔時，不得直接重建覆蓋。
@@ -92,4 +94,4 @@ media-3d-studio/
 - 所有回應與文件使用繁體中文
 - 修改前先確認計畫，優先保留原有資料結構
 - repo 位於 GDrive；換電腦接手前先等雲端同步完成，再讀 `handoff.md` 與檢查 Git 狀態
-- **作品與產出一律放 `output/<作品>/<版本>/`**：`.blend`、腳本、預覽、`report.md`、GLB、影片與逐格快取都放在對應版本資料夾；不另開 `blender/`、`renders/`、`exports/`、`outputs/` 之類的根目錄資料夾，`output/` 不進 git。
+- **作品與產出一律放 `output/<作品>/`**：最新版在作品根目錄，舊版在 `versions/<版本資料夾>/`；`.blend`、腳本、預覽、`report.md`、GLB、影片與逐格快取都跟著所屬版本放；不另開 `blender/`、`renders/`、`exports/`、`outputs/` 之類的根目錄資料夾，`output/` 不進 git。
