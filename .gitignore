@@ -19,6 +19,8 @@ blender.log
 
 # 大型輸出與快取只留在 GDrive
 output/
+# 共用素材與角色資產（參考圖、吉祥物模組）也只走 GDrive，不進公開 repo
+assets/
 **/renders/
 **/exports/
 **/cache/
