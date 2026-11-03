@@ -18,7 +18,7 @@ media-3d-studio/
 ├── CLAUDE.md      Claude Code 橋接檔（@AGENTS.md）
 ├── guides/        製作方法指引
 ├── templates/     發布資訊範本.md（正本在 media-youtube-publish，改正本再覆蓋）
-├── assets/        共用輸入素材：參考圖、貼圖、HDRI、外部模型（圖片影片不進 git）
+├── assets/        共用輸入素材與跨作品角色：參考圖、貼圖、HDRI、外部模型、吉祥物（不進 git，只走雲端硬碟）
 └── output/        作品，一件一個資料夾（不進 git）
     └── <作品>/    根目錄放最新版交付物與 scene.blend；中間產物在 work/，舊版在 舊版/vNN/
 ```
