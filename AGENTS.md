@@ -30,6 +30,7 @@ media-3d-studio/
 ├── CLAUDE.md            Claude Code 橋接檔（@AGENTS.md）
 ├── templates/          共用文件範本（發布資訊範本.md：YouTube／Facebook／Instagram／Threads；五個媒體專案各一份、內容逐位元組相同，正本在 media-youtube-publish 的 `skills/youtube-long/references/`，改正本再整份覆蓋，不在本專案就地改）
 ├── guides/              製作方法指引（進 git）：程式動畫宣傳片製作指引.md
+├── examples/            公開的可執行範例腳本（進 git）：最小宣傳片/；只放為公開另寫的程式，不從 output/ 複製作品程式
 ├── assets/              共用輸入素材：參考圖、貼圖、HDRI、外部模型；參考影片與抽格圖放 assets/參考/<主題>/（整個 assets/ 不進 git，只走 GDrive）
 │   └── 角色/<角色>/      跨作品共用的角色（吉祥物）：README.md 鎖定外觀、可重用的 bpy 建模模組、定裝照
 └── output/              所有作品與產出集中於此（整個不進 git，只走 GDrive）
@@ -67,7 +68,7 @@ media-3d-studio/
 - 先用低成本預覽驗證構圖、比例與材質，再進行高解析或長時間渲染；預估超過 5 分鐘時先告知使用者。
 - 傳給 Blender 腳本的輸出路徑一律用絕對路徑，或在腳本裡以腳本位置解析：`blender_runner.py` 的工作目錄不是作品資料夾，相對路徑會寫到磁碟根目錄（例：`C:\work\…`）。
 - 任何來源不明的 `.blend` 都不啟用自動執行 Python；外部資產的授權與來源記在該作品的 `report.md`。
-- 作品內容（`.blend`、腳本、報告、GLB、照片、影片與音樂）都在 `output/`，共用素材與角色資產在 `assets/`，兩者都不進 Git，只走雲端硬碟同步；Git 只管專案規則、指引與範本。換電腦前先等同步完成。
+- 作品內容（`.blend`、腳本、報告、GLB、照片、影片與音樂）都在 `output/`，共用素材與角色資產在 `assets/`，兩者都不進 Git，只走雲端硬碟同步；Git 只管專案規則、指引、範本與 `examples/` 的公開範例。換電腦前先等同步完成。
 - 通用經驗寫回 `agent-setup-guide` 的 `blender` 技能；只適用於單一作品的選型、參數與素材留在本專案。
 
 ## 同步層級（本專案初始化至第三層級）
