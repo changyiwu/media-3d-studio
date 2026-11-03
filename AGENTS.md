@@ -71,7 +71,7 @@ media-3d-studio/
 | 層級 | 平台 | 位置 | 讀取時機 |
 |------|------|------|---------|
 | L1 | 本地（GDrive） | `AGENTS.md`＋`handoff.md`（不進 git，只走雲端硬碟）＋`CLAUDE.md`（橋接） | 每個 session |
-| L2 | GitHub | [changyiwu/media-3d-studio](https://github.com/changyiwu/media-3d-studio)（**私有**） | 指定時 |
+| L2 | GitHub | [changyiwu/media-3d-studio](https://github.com/changyiwu/media-3d-studio)（**公開**；2026-11-03 前的完整歷史封存在私有的 `media-3d-studio-archive`） | 指定時 |
 | L3 | Obsidian | `media-3d-studio/專案工作流程.md` | 有需要時 |
 
 ## 三個檔案的職責（依「時效性」分家，不是依「詳細程度」）
