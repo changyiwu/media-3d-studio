@@ -28,7 +28,8 @@ media-3d-studio/
 ├── handoff.md           交接檔（不進 git，只走 GDrive）
 ├── CLAUDE.md            Claude Code 橋接檔（@AGENTS.md）
 ├── templates/          共用文件範本（發布資訊範本.md：YouTube／Facebook／Instagram／Threads；五個媒體專案各一份、內容逐位元組相同，正本在 media-youtube-publish 的 `skills/youtube-long/references/`，改正本再整份覆蓋，不在本專案就地改）
-├── assets/              共用輸入素材：參考圖、貼圖、HDRI、外部模型
+├── guides/              製作方法指引（進 git）：程式動畫宣傳片製作指引.md
+├── assets/              共用輸入素材：參考圖、貼圖、HDRI、外部模型；參考影片與抽格圖放 assets/參考/<主題>/（圖片影片不進 git）
 └── output/              所有作品與產出集中於此（整個不進 git，只走 GDrive）
     ├── banana-18-pro/   仿蘋果發表廣告〈Banana 18 Pro〉60 秒（整支片，結構例外，見〈專案專屬規則〉）
     └── <作品>/          一件作品一個資料夾；根目錄只放最新版的交付物與作品層文件（一打開就找得到）
@@ -55,6 +56,7 @@ media-3d-studio/
 - 舊版本不保留交付用 GLB／FBX／OBJ，只有作品根目錄的最新版保留。移除前先確認保留的 `.blend` 能重新匯出每一種姿態，不能時照實寫明；移除後拿掉 `gallery.html`／`index.html` 的對應連結，並在該版 `report.md` 文末註明移除日期與重新匯出方式。
 - 每個版本的腳本、log 與檢查用 json 跟著它產出的版本放，不集中堆在第一版。跨版本讀取輸入或共用腳本時，以作品根（往上找到 `發布資訊.md` 的資料夾）為基準：`WORK=next(p for p in (R,*R.parents) if (p/'發布資訊.md').is_file())`，再用 `WORK/'舊版/<版本資料夾>/…'` 指向舊版，版本封存後不必再改；`舊版/` 內舊腳本的 `parent.parent/'<版本資料夾>'` 寫法仍有效，不必改（舊腳本裡殘留的 `WORK/'versions/…'` 是 2026-10-26 改名前的寫法，重跑前改成 `舊版`）。
 - 〈Banana 18 Pro〉是從 `media-music-video`（原 `media-comfyui-studio`）搬來的整支廣告片（bpy 建模算圖＋Python 合成＋numpy 配樂），維持原結構 `output/banana-18-pro/{common,blender,audio,comp,tools,media}/`，不拆成版本資料夾；重現步驟與定稿清單以它的 `notes.md` 為準。
+- 做全程式產生的 3D 宣傳／廣告片時，先讀 `guides/程式動畫宣傳片製作指引.md`，照它的開工確認清單與流程進行。
 - 修改既有 `.blend` 時預設另存新檔，不覆蓋使用者原始檔；只有使用者明確要求才可原地覆蓋。
 - 重跑既有作品的重建腳本前，先確認輸入與覆寫範圍；保留手動修訂的主檔時，不得直接重建覆蓋。
 - 場景修改後重渲染時，先移走與來源雜湊不符的舊格圖快取，避免混入舊畫面。
