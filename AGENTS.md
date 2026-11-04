@@ -10,7 +10,7 @@
 ## 關鍵時程
 
 - 2026-09-21：建立 `media-3d-studio`，完成專案初始化與本機 Git 基線。
-- 2026-10-25：從 `media-music-video`（原 `media-comfyui-studio`）搬入仿蘋果發表廣告〈Banana 18 Pro〉（2026-09-29 完成的 60 秒 v3，`output/banana-18-pro/`）。
+- 2026-10-25：從 `media-music-video`（原 `media-comfyui-studio`）搬入仿蘋果發表廣告〈Banana 18 Pro〉（2026-09-29 完成的 60 秒 v3，`output/Banana 18 Pro/`）。
 - 2026-10-25：作品結構改為「最新版在作品根目錄、舊版收進 `versions/`」（機械錶 v9、Optimus 03 detailed 在根目錄）。
 - 2026-10-26：作品資料夾比照 media-short-film 的片子資料夾：根目錄只留交付物（改名為作品名）與作品層文件，中間產物收進 `work/`，`versions/` 改名 `舊版/`。
 - 2026-11-03：第一支 B 路線（一鏡到底＋吉祥物）宣傳片〈上課互動三件套〉90 秒定稿（`output/上課互動三件套/`）；建立跨作品吉祥物阿克、阿布（`assets/角色/`）。
@@ -34,7 +34,7 @@ media-3d-studio/
 ├── assets/              共用輸入素材：參考圖、貼圖、HDRI、外部模型；參考影片與抽格圖放 assets/參考/<主題>/（整個 assets/ 不進 git，只走 GDrive）
 │   └── 角色/<角色>/      跨作品共用的角色（吉祥物）：README.md 鎖定外觀、可重用的 bpy 建模模組、定裝照
 └── output/              所有作品與產出集中於此（整個不進 git，只走 GDrive）
-    ├── banana-18-pro/   仿蘋果發表廣告〈Banana 18 Pro〉60 秒（整支片，結構例外，見〈專案專屬規則〉）
+    ├── Banana 18 Pro/   仿蘋果發表廣告〈Banana 18 Pro〉60 秒（整支片，work/ 內結構例外，見〈專案專屬規則〉）
     └── <作品>/          一件作品一個資料夾；根目錄只放最新版的交付物與作品層文件（一打開就找得到）
         ├── <作品>.mp4／<作品>.glb  交付影片／模型，檔名用作品名（GLB／FBX／OBJ 只有最新版保留）
         ├── scene.blend  最新版：可繼續編輯的 Blender 原始檔
@@ -58,7 +58,7 @@ media-3d-studio/
 - 版本定稿後，checkpoint、`.blend1`、`render-cache/` 逐格快取與驗收抽幀屬中間產物，經使用者同意可丟資源回收筒；沒被 `gallery.html`、`index.html`、`report.md` 或 `發布資訊.md` 引用的驗收圖也算中間產物。仍在開發中的最新版快取，以及上述檔案引用的圖片要保留。
 - 舊版本不保留交付用 GLB／FBX／OBJ，只有作品根目錄的最新版保留。移除前先確認保留的 `.blend` 能重新匯出每一種姿態，不能時照實寫明；移除後拿掉 `gallery.html`／`index.html` 的對應連結，並在該版 `report.md` 文末註明移除日期與重新匯出方式。
 - 每個版本的腳本、log 與檢查用 json 跟著它產出的版本放，不集中堆在第一版。跨版本讀取輸入或共用腳本時，以作品根（往上找到 `發布資訊.md` 的資料夾）為基準：`WORK=next(p for p in (R,*R.parents) if (p/'發布資訊.md').is_file())`，再用 `WORK/'舊版/<版本資料夾>/…'` 指向舊版，版本封存後不必再改；`舊版/` 內舊腳本的 `parent.parent/'<版本資料夾>'` 寫法仍有效，不必改（舊腳本裡殘留的 `WORK/'versions/…'` 是 2026-10-26 改名前的寫法，重跑前改成 `舊版`）。
-- 〈Banana 18 Pro〉是從 `media-music-video`（原 `media-comfyui-studio`）搬來的整支廣告片（bpy 建模算圖＋Python 合成＋numpy 配樂），維持原結構 `output/banana-18-pro/{common,blender,audio,comp,tools,media}/`，不拆成版本資料夾；重現步驟與定稿清單以它的 `notes.md` 為準。
+- 〈Banana 18 Pro〉是從 `media-music-video`（原 `media-comfyui-studio`）搬來的整支廣告片（bpy 建模算圖＋Python 合成＋numpy 配樂），根目錄只放交付物（`Banana 18 Pro.mp4`、`_母帶.mp4`、定裝照、封面）與作品層文件，程式維持原結構收在 `work/{common,blender,audio,comp,tools}/`，不拆成版本資料夾；重現步驟與定稿清單以它的 `notes.md` 為準。
 - 做全程式產生的 3D 宣傳／廣告片時，先讀 `guides/程式動畫宣傳片製作指引.md`，照它的開工確認清單與流程進行；成片自審完先問使用者「可以成片嗎？」，說可以才改名放進作品根目錄並寫 `發布資訊.md`。
 - 會在多件作品出現的角色（吉祥物）放 `assets/角色/<角色>/`，作品從那裡 import 建模模組、照 `README.md` 的外觀描述，不在作品裡另做一份；改造型先改 `README.md` 與模組，再重出定裝照給使用者確認。
 - 修改既有 `.blend` 時預設另存新檔，不覆蓋使用者原始檔；只有使用者明確要求才可原地覆蓋。
